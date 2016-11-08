@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+    <title>My First Chat</title>
+    <script src='https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.js'></script>
+</head>
+
+<body ng-controller='chatController as chat'>
+  <h1> Welcome, {{chat.username}}</h1>
+  <p>
+      <input type='text' ng-model='chat.username' placeholder='Name'>
+      <button type='button' ng-click='chat.login()'>Login</button>
+  </p>
+    <div>
+      <h3> Chat History </h3>
+      
+  <p>
+    <div>
+      <input type='text' ng-model='chat.message'>
+      <button type='button' ng-click='chat.sendShout()'>Shout</button>
+    </div>
+  </p>
+</body>
+
+</html>
