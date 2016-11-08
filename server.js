@@ -6,4 +6,14 @@ var express = require('express'),
 
 app.use(logger, fileserver);
 
-app.server
+app.server = app.listen(PORT, (error) => {
+  if(error) {
+    console.error('Servere could not start', error);
+    process.exit(1);
+  } else {
+    console.log('Server is up and listening to port', PORT);
+  };
+});
+
+var sockets = require('./controllers/sockets');
+sockets(app, PORT);
