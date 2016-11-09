@@ -1,15 +1,16 @@
 angular.module('app', []);
 
 angular.module('app')
-  .controller('chatController', ['$scope', function ($scope){
+  .controller('chatController', ['$scope', '$http', function ($scope, $http) {
 
     var chat = this;
+    chat.username = ''
+    chat.room = ''
+    chat.chatMessage = ''
+    chat.messageHistory = []
+    chat.tweetHistory = []
 
-    console.log('loaded chatController');
-
-    chat.username = '';
-
-    chat.messageHistory = [];
+    var socket = io();
 
     chat.sendShout = function() {
       console.log('Shout to ALL from', chat.username, ':',chat.message);
@@ -25,6 +26,7 @@ angular.module('app')
       console.log('Shout to ALL FROM', data.sender,':',data.content);
       chat.messageHistory.push(data);
     });
+    
     chat.join = function() {
       console.log('Joining the ', chat.room, ':','room');
       socket.emit('join', {
